@@ -463,7 +463,8 @@ map的一些规则：
 
 ### ProtoBuf的序列和反序列化方法
 
-![image-20230709091645841](/Users/wyn/Library/Application Support/typora-user-images/image-20230709091645841.png)
+<img width="937" alt="image" src="https://github.com/bytenan/ProtoBuf/assets/100895805/8dd5a8a0-9705-4754-b350-0ee97c822318">
+
 
 ProtoBuf的序列和反序列化方法就在MessageLite中，其中Parse系列是反序列化函数，Serialize系列是序列化函数。
 
