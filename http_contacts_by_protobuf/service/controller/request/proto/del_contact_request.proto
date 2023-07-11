@@ -1,0 +1,6 @@
+syntax = "proto3";
+package del_contact_request;
+
+message DelContactRequest {
+    string uid = 1;
+}

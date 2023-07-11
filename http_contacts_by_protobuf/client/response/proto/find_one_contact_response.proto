@@ -1,0 +1,24 @@
+syntax = "proto3";
+package find_one_contact_response;
+
+message PeopleInfo {
+    string uid = 1;
+    string name = 2;// 姓名
+    int32 age = 3;// 年龄
+    message Phone {
+        string number = 1;// 电话号码
+        enum PhoneType {
+            MOBILE_PHONE = 0;// 移动电话
+            TELEPHONE = 1;// 固定电话
+        }
+        PhoneType type = 2;// 号码类型
+    }
+    repeated Phone phone = 4;// 电话数组
+    map<string, string> remark = 5;// 备注图
+}
+
+message FindOneContactResponse {
+    bool success = 1;
+    string error_desc = 2;
+    PeopleInfo people_info = 3;
+}

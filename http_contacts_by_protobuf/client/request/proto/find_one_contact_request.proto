@@ -1,0 +1,6 @@
+syntax = "proto3";
+package find_one_contact_request;
+
+message FindOneContactRequest {
+    string uid = 1;
+}

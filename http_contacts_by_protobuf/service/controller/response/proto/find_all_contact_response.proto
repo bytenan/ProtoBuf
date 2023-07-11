@@ -1,0 +1,13 @@
+syntax = "proto3";
+package find_all_contact_response;
+
+message PeopleInfo {
+    string uid = 1;
+    string name = 2;
+}
+
+message FindAllContactResponse {
+    bool success = 1;
+    string error_desc = 2;
+    repeated PeopleInfo contacts = 3;
+}

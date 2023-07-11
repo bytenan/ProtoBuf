@@ -1,0 +1,17 @@
+syntax="proto3";
+package add_contact_request;
+
+message AddContactRequest {
+    string name = 1;// 姓名
+    int32 age = 2;// 年龄
+    message Phone {
+        string number = 1;// 电话号码
+        enum PhoneType {
+            MOBILE_PHONE = 0;// 移动电话
+            TELEPHONE = 1;// 固定电话
+        }
+        PhoneType type = 2;// 号码类型
+    }
+    repeated Phone phone = 3;// 电话数组
+    map<string, string> remark = 4;// 备注图
+}

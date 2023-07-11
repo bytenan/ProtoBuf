@@ -1,0 +1,8 @@
+syntax = "proto3";
+package add_contact_response;
+
+message AddContactResponse {
+    bool success = 1;// 服务是否调用成功
+    string error_desc = 2;// 错误描述
+    string uid = 3;// 用户唯一ID
+}

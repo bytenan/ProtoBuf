@@ -1,0 +1,8 @@
+syntax = "proto3";
+package del_contact_response;
+
+message DelContactResponse {
+    bool success = 1;
+    string error_desc = 2;
+    string uid = 3;
+}
