@@ -1,28 +1,28 @@
-# Linux环境下载安装ProtoBuf编译器
+[TOC]
 
-## 1. 安装依赖库
+## 安装 ProtoBuf
 
-**Ubuntu用户选择**
+**安装依赖库**
+
+Ubuntu
 
 ```shell
 sudo apt-get install autoconf automake libtool curl make g++ unzip -y
 ```
 
-**Centos用户选择**
+Centos
 
 ```shell
-sudo yum install -y autoconf automake libtool curl make gcc-c++ unzip
+sudo yum install autoconf automake libtool curl make gcc-c++ unzip -y
 ```
 
-## 2. 下载ProtoBuf编译器
+**下载 ProtoBuf 源码**
 
-Github地址：[https://github.com/protocolbuffers/protobuf/releases/tag/v21.11](https://github.com/protocolbuffers/protobuf/releases/tag/v21.11)
+以v21.11为例，源码地址：[https://github.com/protocolbuffers/protobuf/releases/tag/v21.11](https://github.com/protocolbuffers/protobuf/releases/tag/v21.11)
 
-以v21.11为例。
+>  ProtoBuf 分为适用于单语言版本和适用于多语言版本两种。
 
->  既可以选择针对一门语言的ProtoBuf，也可以选择适用于多种语言的ProtoBuf。
-
-这里以适用于多种语言的ProtoBuf举例，下载all.zip：
+这里以适用于多语言版本的ProtoBuf为例，下载all.zip：
 
 ```shell
 wget https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protobuf-all-21.11.zip
@@ -34,7 +34,7 @@ wget https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protob
 unzip protobuf-all-21.11.zip 
 ```
 
-## 3. 安装ProtoBuf编译器
+**安装 ProtoBuf**
 
 解压zip包后会生成`protobuf-21.11`目录，进入该目录：
 
@@ -48,21 +48,21 @@ cd protobuf-21.11
 ./autogen.sh
 ```
 
-执行configure（有两种方式）：
+执行configure：
 
 * 方式一：默认方式，安装的bin、include、lib是分散的。
 
-  * ```c++
-    ./configure
-    ```
+  ```shell
+  ./configure
+  ```
 
 * 方式二：bin、include、lib统一安装在/usr/local/protobuf下。
 
-  * ```c++
-    ./configure --prefix=/usr/local/protobuf
-    ```
+  ```shell
+  ./configure --prefix=/usr/local/protobuf
+  ```
 
-依次执行以下命令（前两步执行时间分别为15分钟左右，make check也可以选择不执行）
+依次执行以下命令（前两步执行时间分别为15分钟左右，make check也可以选择不执行）：
 
 ```shell
 make
@@ -74,34 +74,34 @@ sudo make install
 
 * 第一步：进入profile配置文件
 
-  * ```shell
-    sudo vim /etc/profile
-    ```
+  ```shell
+  sudo vim /etc/profile
+  ```
 
 * 第二步：将以下内容写入该文件，然后保存退出
 
-  * ```shell
-    #(动态库搜索路径) 程序加载运⾏期间查找动态链接库时指定除了系统默认路径之外的其他路径 
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/protobuf/lib/
-    #(静态库搜索路径) 程序编译期间查找动态链接库时指定查找共享库的路径 
-    export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/protobuf/lib/
-    #执⾏程序搜索路径 
-    export PATH=$PATH:/usr/local/protobuf/bin/
-    #c程序头⽂件搜索路径 
-    export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/protobuf/include/
-    #c++程序头⽂件搜索路径 
-    export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/protobuf/include/
-    #pkg-config 路径 
-    export PKG_CONFIG_PATH=/usr/local/protobuf/lib/pkgconfig/
-    ```
+  ```shell
+  #(动态库搜索路径) 程序加载运⾏期间查找动态链接库时指定除了系统默认路径之外的其他路径 
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/protobuf/lib/
+  #(静态库搜索路径) 程序编译期间查找动态链接库时指定查找共享库的路径 
+  export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/protobuf/lib/
+  #执⾏程序搜索路径 
+  export PATH=$PATH:/usr/local/protobuf/bin/
+  #c程序头⽂件搜索路径 
+  export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/protobuf/include/
+  #c++程序头⽂件搜索路径 
+  export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/protobuf/include/
+  #pkg-config 路径 
+  export PKG_CONFIG_PATH=/usr/local/protobuf/lib/pkgconfig/
+  ```
 
-执行/etc/profile，使配置生效
+执行/etc/profile，使配置生效：
 
 ```shell
 source /etc/profile
 ```
 
-## 4. 检查是否安装成功
+**检查是否安装成功**
 
 ```shell
 protoc --version
@@ -109,11 +109,11 @@ protoc --version
 
 能正确显示出版本号，即安装成功！
 
-## 5. VsCode 插件 Bug ! ! !
+## VsCode 插件 Bug 
 
 如果你的vscode安装了c/c++这款插件，那么你的*.pb.c将会出现大量报错（不影响正常使用，因为这是vscode c/c++插件的bug），目前我尚无解决方法（除了卸载该插件）。
 
-# 上手ProtoBuf
+# ProtoBuf 学习
 
 ## ProtoBuf的认识
 
@@ -754,4 +754,7 @@ for (int i = 0; i < set.field_count(); ++i) {
 option optimize_for = LITE_RUNTIME;
 ```
 
-# 使用ProtoBuf制作一个简易版网络通讯录
+# 实战项目——简易版网络通讯录
+
+项目源码：[https://github.com/wynhelloworld/ProtoBuf](https://github.com/wynhelloworld/ProtoBuf)
+
