@@ -1,5 +1,3 @@
-[TOC]
-
 # ProtoBuf
 
 ## 安装 ProtoBuf
